@@ -10,8 +10,6 @@ def list_entries():
     """
     _, filenames = default_storage.listdir("entries")
     print(f"\n\n\n{filenames}\n\n\n")
-    # print(list(sorted(re.sub(r"\.md$", "", filename)
-    #             for filename in filenames if filename.endswith(".md"))))
     return list(sorted(re.sub(r"\.md$", "", filename)
                 for filename in filenames if filename.endswith(".md")))
             
