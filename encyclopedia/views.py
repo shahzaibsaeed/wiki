@@ -17,4 +17,4 @@ def entryPage(request, title):
             "title": title
     })
     else:
-      raise Http404("The request page was not existed")
+      raise Http404("The request page does not existed")
