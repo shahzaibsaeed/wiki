@@ -9,7 +9,7 @@ def list_entries():
     Returns a list of all names of encyclopedia entries.
     """
     _, filenames = default_storage.listdir("entries")
-    print(f"\n\n\n{filenames}\n\n\n")
+    # print(f"\n\n\n{filenames}\n\n\n")
     return list(sorted(re.sub(r"\.md$", "", filename)
                 for filename in filenames if filename.endswith(".md")))
             
