@@ -1,8 +1,12 @@
 from django.shortcuts import render
-from django.http import Http404
-from . import util
+from django.http import Http404, HttpResponse, HttpResponseRedirect
+from django.urls import reverse
+
+
 from django.contrib import messages
 import re
+
+from . import util, forms
 
 
 def index(request):
@@ -51,3 +55,21 @@ def entryPage(request, title):
         })
     else:
         raise Http404("The request page does not existed")
+
+def newPage(request):
+    entries = util.list_entries()
+    if request.method == "POST":
+        form = forms.NewPageForm(request.POST)
+
+        if form.is_valid():
+            title = form.cleaned_data["title"]
+            content = form.cleaned_data["content"]
+            print(f"\n\n\n{title}\n{content}\n\n")
+        # else:
+        #     return render(request, "tasks/add.html", {
+        #         "form": form
+        #     })
+    return render(request, "encyclopedia/newPage.html", {
+        "title": "Create New Page",
+        "form": forms.NewPageForm()    
+    })
